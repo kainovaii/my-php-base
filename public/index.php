@@ -1,5 +1,6 @@
 <?php
 
+use application\controllers\HomeController;
 use application\core\Application;
 
 // Define the root directory of the application
@@ -14,7 +15,7 @@ require_once ROOT_DIR .
 $application = new Application();
 
 // Register a GET route for the root path ('/') that maps to the 'home' action
-$application->router->get('/', 'home');
+$application->router->get('/', [HomeController::class, 'index']);
 
 // Run the application
 $application->run();

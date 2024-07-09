@@ -15,11 +15,11 @@ use application\core\http\exceptions\NotImplementedException;
  * This class is responsible for mapping URL paths to their corresponding actions,
  * and resolving the appropriate response based on the requested path and HTTP method.
  *
- * @method void get(string $path, string|callable $action)
- * @method void post(string $path, string|callable $action)
- * @method void put(string $path, string|callable $action)
- * @method void patch(string $path, string|callable $action)
- * @method void delete(string $path, string|callable $action)
+ * @method void get(string $path, string|callable|array $action)
+ * @method void post(string $path, string|callable|array $action)
+ * @method void put(string $path, string|callable|array $action)
+ * @method void patch(string $path, string|callable|array $action)
+ * @method void delete(string $path, string|callable|array $action)
  */
 final class Router  
 {
@@ -55,12 +55,12 @@ final class Router
         foreach ($this->request->methods() as $method) $this->routes[$method] = null;
     }
 
-    public function any(string $path, callable | string $action): void
+    public function any(string $path, callable | string | array $action): void
     {
         foreach ($this->request->methods() as $method) $this->add($method, $path, $action);
     }
 
-    private function add(string $method, string $path, mixed $action): void
+    private function add(string $method, string $path, callable | string | array $action): void
     {
         $this->routes[$method][$path] = $action;
     }
@@ -95,6 +95,8 @@ final class Router
 
             throw new NotFoundException();
         }
+
+        if (is_array($action)) $action[0] = new $action[0]();
 
         return is_string($action) ? view($action) : call_user_func($action);
     }
