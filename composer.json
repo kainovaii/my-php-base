@@ -1,0 +1,22 @@
+{
+    "name": "ange-arsene/php_mvc_framework",
+    "description": "Minimalistic custom framework created for educational purposes.",
+    "type": "project",
+    "autoload": {
+        "files": [
+            "./app/core/utilities/debug.php",
+            "./app/core/utilities/helpers.php"
+        ],
+        "psr-4": {
+            "application\\": "./app"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ange Arsene",
+            "email": "nkenmandenga@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
