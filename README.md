@@ -1,9 +1,9 @@
 # PHP MVC framework
-Minimalistic custom framework created for educational purposes.
+## Minimalistic custom framework created for educational purposes.
 
 
 
-## The framework is not well tested on production. If you use it on production you use it on your own risk.
+### The framework is not well tested on production. If you use it on production you use it on your own risk.
 
 ----
 ## Installation
