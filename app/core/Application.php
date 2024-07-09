@@ -24,6 +24,8 @@ final class Application
 
     public Response $response;
 
+    public MiddlewareStack $middlewares;
+
     /**
      * The root directory of the application.
      */
@@ -40,6 +42,7 @@ final class Application
         // Create a new Router object
         $this->router = new Router();
         $this->response = new Response();
+        $this->middlewares = new MiddlewareStack();
 
         // Set the root directory of the application
         self::$ROOT_DIR = dirname(__DIR__);

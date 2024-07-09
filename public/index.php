@@ -1,7 +1,8 @@
 <?php
 
-use application\controllers\HomeController;
 use application\core\Application;
+use application\controllers\HomeController;
+use application\middlewares\AuthMiddleware;
 
 // Define the root directory of the application
 define('ROOT_DIR', dirname(__DIR__));
@@ -13,6 +14,8 @@ require_once ROOT_DIR .
 
 // Create a new instance of the Application class
 $application = new Application();
+
+$application->middlewares->add('auth', AuthMiddleware::class);
 
 // Register a GET route for the root path ('/') that maps to the 'home' action
 $application->router->get('/', [HomeController::class, 'index']);
