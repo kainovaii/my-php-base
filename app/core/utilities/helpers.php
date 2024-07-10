@@ -10,6 +10,7 @@ use application\core\http\Request;
  *
  * @param string $name The name of the view file to render.
  * @param string|null $layout The name of the layout file to use (optional).
+ * @param array $params The parameters to pass to the view (optional).
  * @return View The rendered View object.
  */
 function view(string $name, ?string $layout = null, array $params = []): View
@@ -17,10 +18,15 @@ function view(string $name, ?string $layout = null, array $params = []): View
     // If no layout is provided, use the main layout by default
     $layout = $layout ?? View::$MAIN_LAYOUT;
 
-    // Create a new View object with the provided name and layout
+    // Create a new View object with the provided name, layout, and parameters
     return new View($name, $layout, $params);
 }
 
+/**
+ * Helper function to set the HTTP request method.
+ *
+ * @param string $method The HTTP request method (e.g., 'GET', 'POST', 'PUT', 'DELETE').
+ */
 function request_method(string $method): void
 {
     Request::method($method);

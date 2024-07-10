@@ -39,7 +39,8 @@ final class Request
      * Gets the HTTP method of the current request.
      *
      * This method retrieves the HTTP method from the `$_SERVER['REQUEST_METHOD']` global
-     * variable and converts it to lowercase.
+     * variable and converts it to lowercase. If the `_method` parameter is present in the
+     * request body, it takes precedence over the server-provided method.
      *
      * @return string The HTTP method of the current request.
      */
@@ -49,15 +50,29 @@ final class Request
         return strtolower($_POST['_method'] ?? $_SERVER['REQUEST_METHOD']);
     }
 
+    /**
+     * Returns the list of supported HTTP methods.
+     *
+     * @return array The list of supported HTTP methods.
+     */
     public function methods(): array
     {
         return self::METHODS;
     }
 
+    /**
+     * Outputs an HTML input field to override the HTTP method of the current request.
+     *
+     * This method is useful when working with forms that need to send a different HTTP
+     * method than the default (typically POST).
+     *
+     * @param string $method The HTTP method to override (e.g., 'put', 'patch', 'delete').
+     */
     public static function method(string $method): void
     {
         $string = '<input type="hidden" name="_method" value="%s">';
 
-        echo (array_search($method, self::METHODS) ? sprintf($string, $method) : null);
+        // Output the HTML input field only if the provided method is supported
+        echo (array_search($method, self::METHODS) !== false ? sprintf($string, $method) : null);
     }
 }

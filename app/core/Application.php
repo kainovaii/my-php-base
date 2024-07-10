@@ -9,11 +9,9 @@ use application\core\http\Response;
 use Exception;
 
 /**
- * The main application class that manages the routing and execution of the application.
- *
- * This class is responsible for initializing the Router object, setting the root directory
- * of the application, and running the application by resolving the appropriate action
- * based on the requested URL.
+ * The Application class is the main entry point for the application. It is responsible for
+ * initializing the necessary components, handling the request routing, and executing the
+ * appropriate actions.
  */
 final class Application
 {
@@ -22,8 +20,14 @@ final class Application
      */
     public Router $router;
 
+    /**
+     * The Response object used to manage the application's HTTP responses.
+     */
     public Response $response;
 
+    /**
+     * The MiddlewareStack object used to manage the application's middleware.
+     */
     public MiddlewareStack $middlewares;
 
     /**
@@ -34,17 +38,15 @@ final class Application
     /**
      * Constructs a new instance of the Application class.
      *
-     * In the constructor, a new Router object is created and the root directory of the
-     * application is set.
+     * In the constructor, the Router, Response, and MiddlewareStack objects are created,
+     * and the root directory of the application is set.
      */
     public function __construct()
     {
-        // Create a new Router object
         $this->router = new Router();
         $this->response = new Response();
         $this->middlewares = new MiddlewareStack();
 
-        // Set the root directory of the application
         self::$ROOT_DIR = dirname(__DIR__);
     }
 
@@ -59,14 +61,26 @@ final class Application
     {
         try {
             echo $this->router->resolve();
-        } catch (Exception $exception) { $this->handle($exception); }
+        } catch (Exception $exception) {
+            $this->handle($exception);
+        }
     }
 
+    /**
+     * Handles exceptions that occur during the application's execution.
+     *
+     * If the exception is a subclass of HTTPException, the response status code is set
+     * accordingly, and the appropriate error view is rendered. For other types of
+     * exceptions, a generic error message may be displayed or logged.
+     *
+     * @param Exception $exception The exception to be handled.
+     */
     private function handle(Exception $exception): void
     {
         if (is_subclass_of($exception, HTTPException::class)) {
             $this->response->set_status_code($exception->getCode());
             echo view('error', 'main-error', $exception->parameters());
         }
+        // Add additional exception handling logic as needed
     }
 }
