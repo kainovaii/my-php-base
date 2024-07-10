@@ -11,7 +11,10 @@ final class MiddlewareStack
     public function add($alias, string $middleware_class): void
     {
         $this->middleware_stack[$alias] = $middleware_class;
+    }
 
-        dump($this->middleware_stack);
+    public static function has(string $middleware): Middleware | bool
+    {
+        return self::$middleware_stack[$middleware] ?? false;
     }
 }

@@ -6,7 +6,7 @@ namespace application\middlewares;
 
 use application\core\Middleware;
 
-final class AuthMiddleware  implements Middleware
+final class AuthenticationMiddleware  implements Middleware
 {
     public function handle(): bool
     {
