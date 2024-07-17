@@ -7,6 +7,7 @@ namespace application\core;
 use Exception;
 use application\core\http\Request;
 use application\core\http\exceptions\NotFoundException;
+use application\core\http\exceptions\ForbiddenException;
 use application\core\http\exceptions\NotImplementedException;
 use application\core\http\exceptions\MethodNotAllowedException;
 
@@ -124,9 +125,11 @@ final class Router
             $routes = array_diff_key($this->routes, [$method => null]);
 
             foreach ($routes as $route) {
-                foreach ($route as $key => $_value) {
-                    if ($key === $path)
-                        throw new MethodNotAllowedException();
+                if (is_array($route)) {
+                    foreach ($route as $key => $_value) {
+                        if ($key === $path)
+                            throw new MethodNotAllowedException();
+                    }
                 }
             }
 
@@ -150,11 +153,13 @@ final class Router
      */
     private function verify(?string $middleware): void
     {
-        $middleware_class = MiddlewareStack::has($middleware);
-
-        if ($middleware_class) {
-            $middleware_class = new $middleware_class();
-            call_user_func([$middleware_class, 'handle']) ?: throw new Exception();
+        if (isset($middleware)) {
+            $middleware_class = MiddlewareStack::has($middleware);
+            
+            if ($middleware_class) {
+                $middleware_class = new $middleware_class();
+                call_user_func([$middleware_class, 'handle']) ?: throw new ForbiddenException();
+            }
         }
     }
 }

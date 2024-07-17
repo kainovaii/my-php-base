@@ -19,7 +19,7 @@ $application->middlewares->add('auth', AuthenticationMiddleware::class);
 
 // Register a GET route for the root path ('/') that maps to the 'index' action
 // of the 'HomeController'
-$application->router->get('/', [HomeController::class, 'index']);
+$application->router->get('/', [HomeController::class, 'index'], 'auth');
 
 // Run the application
 $application->run();

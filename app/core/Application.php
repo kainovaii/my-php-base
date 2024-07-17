@@ -4,9 +4,9 @@ declare(strict_types = 1);
 
 namespace application\core;
 
-use application\core\exceptions\HTTPException;
-use application\core\http\Response;
 use Exception;
+use application\core\http\Response;
+use application\core\exceptions\HTTPException;
 
 /**
  * The Application class is the main entry point for the application. It is responsible for

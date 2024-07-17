@@ -13,7 +13,7 @@ final class MiddlewareStack
     /**
      * An associative array that stores the registered middleware, with the middleware alias as the key and the middleware class name as the value.
      */
-    private array $middleware_stack = [];
+    private static array $middleware_stack = [];
 
     /**
      * Adds a new middleware to the stack.
@@ -23,7 +23,7 @@ final class MiddlewareStack
      */
     public function add(string $alias, string $middleware_class): void
     {
-        $this->middleware_stack[$alias] = $middleware_class;
+        self::$middleware_stack[$alias] = $middleware_class;
     }
 
     /**
