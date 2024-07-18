@@ -154,10 +154,8 @@ final class Router
             foreach ($middlewares as $middleware) {
                 $middleware = MiddlewareStack::has($middleware);
             
-                if ($middleware) {
-                    $middleware = new $middleware();
-                    call_user_func([$middleware, 'handle']) ?: throw new ForbiddenException();
-                }
+                $middleware = new $middleware();
+                call_user_func([$middleware, 'handle']) ?: throw new ForbiddenException();
             }
         }
     }
