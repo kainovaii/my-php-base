@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 use application\core\Application;
 use application\controllers\HomeController;
+use application\middlewares\AdministratorMiddleware;
 use application\middlewares\AuthenticationMiddleware;
 
 // Define the root directory of the application
@@ -20,12 +21,11 @@ $application = new Application();
 
 // Add the authentication middleware to the list of middlewares
 $application->middlewares->add('auth', AuthenticationMiddleware::class);
+$application->middlewares->add('admin', AdministratorMiddleware::class);
 
 // Register a GET route for the root path ('/') that maps to the 'index' action
 // of the 'HomeController'
-$application->router->get('/', [HomeController::class, 'index'], 'auth');
-
-$application->router->any('/users', 'home');
+$application->router->get('/', [HomeController::class, 'index'], ['auth', 'admin']);
 
 // Run the application
 $application->run();

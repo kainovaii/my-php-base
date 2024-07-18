@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace application\core;
 
+use Exception;
+
 /**
  * The MiddlewareStack class is responsible for managing the application's middleware stack.
  * It provides methods to add new middleware to the stack and to check if a specific middleware exists in the stack.
@@ -34,6 +36,6 @@ final class MiddlewareStack
      */
     public static function has(string $middleware): string | bool
     {
-        return self::$middleware_stack[$middleware] ?? false;
+        return self::$middleware_stack[$middleware] ?? throw new Exception("Middleware not found in the stack.");
     }
 }

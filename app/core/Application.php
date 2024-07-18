@@ -33,7 +33,7 @@ final class Application
     /**
      * The root directory of the application.
      */
-    public static $ROOT_DIR;
+    public static string $ROOT_DIR;
 
     /**
      * Constructs a new instance of the Application class.

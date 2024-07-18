@@ -19,12 +19,12 @@ use application\core\http\exceptions\MethodNotAllowedException;
  *
  * The Router class also supports middleware, which can be associated with a specific route. The middleware is executed before the route action is called.
  * 
- * @method void get(string $path, string|callable|array $action, null|string $middleware = null)
- * @method void post(string $path, string|callable|array $action, null|string $middleware = null)
- * @method void put(string $path, string|callable|array $action, null|string $middleware = null)
- * @method void patch(string $path, string|callable|array $action, null|string $middleware = null)
- * @method void delete(string $path, string|callable|array $action, null|string $middleware = null)
- * @method void any(string $path, string|callable|array $action, null|string $middleware = null)
+ * @method void get(string $path, string|callable|array $action, null|string|array $middleware = null)
+ * @method void post(string $path, string|callable|array $action, null|string|array $middleware = null)
+ * @method void put(string $path, string|callable|array $action, null|string|array $middleware = null)
+ * @method void patch(string $path, string|callable|array $action, null|string|array $middleware = null)
+ * @method void delete(string $path, string|callable|array $action, null|string|array $middleware = null)
+ * @method void any(string $path, string|callable|array $action, null|string|array $middleware = null)
  */
 final class Router  
 {
@@ -74,12 +74,12 @@ final class Router
      * @param string $method The HTTP method (GET, POST, PUT, PATCH, DELETE) for the route.
      * @param string $path The URL path to match.
      * @param callable|string|array $action The action to be executed when the route is matched.
-     * @param null|string $middleware The middleware to be executed before the action.
+     * @param string|array|null $middlewares The middleware to be executed before the action.
      */
-    private function add(string $method, string $path, callable | string | array $action, ?string $middleware = null): void
+    private function add(string $method, string $path, callable | string | array $action, string | array | null $middlewares = null): void
     {
         $this->routes[$method][$path] = $action;
-        $this->middlewares[$method][$path] = $middleware;
+        $this->middlewares[$method][$path] = $middlewares;
     }
 
     /**
@@ -144,16 +144,20 @@ final class Router
     /**
      * Verifies and executes the middleware associated with the current route.
      *
-     * @param null|string $middleware The middleware to be executed.
+     * @param null|string|array $middleware The middleware to be executed.
      */
-    private function verify(?string $middleware): void
+    private function verify(string | array | null $middlewares): void
     {
-        if (isset($middleware)) {
-            $middleware_class = MiddlewareStack::has($middleware);
+        if (isset($middlewares)) {
+            $middlewares = is_array($middlewares) ? $middlewares : [$middlewares];
+
+            foreach ($middlewares as $middleware) {
+                $middleware = MiddlewareStack::has($middleware);
             
-            if ($middleware_class) {
-                $middleware_class = new $middleware_class();
-                call_user_func([$middleware_class, 'handle']) ?: throw new ForbiddenException();
+                if ($middleware) {
+                    $middleware = new $middleware();
+                    call_user_func([$middleware, 'handle']) ?: throw new ForbiddenException();
+                }
             }
         }
     }
