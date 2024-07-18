@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace application\core;
 
-use Exception;
 use application\core\http\Request;
 use application\core\http\exceptions\NotFoundException;
 use application\core\http\exceptions\ForbiddenException;
@@ -25,6 +24,7 @@ use application\core\http\exceptions\MethodNotAllowedException;
  * @method void put(string $path, string|callable|array $action, null|string $middleware = null)
  * @method void patch(string $path, string|callable|array $action, null|string $middleware = null)
  * @method void delete(string $path, string|callable|array $action, null|string $middleware = null)
+ * @method void any(string $path, string|callable|array $action, null|string $middleware = null)
  */
 final class Router  
 {
@@ -69,18 +69,6 @@ final class Router
     }
 
     /**
-     * Registers a route that will handle all HTTP methods (GET, POST, PUT, PATCH, DELETE).
-     *
-     * @param string $path The URL path to match.
-     * @param callable|string|array $action The action to be executed when the route is matched.
-     * @param null|string $middleware The middleware to be executed before the action.
-     */
-    public function any(string $path, callable | string | array $action, ?string $middleware = null): void
-    {
-        foreach ($this->request->methods() as $method) $this->add($method, $path, $action, $middleware);
-    }
-
-    /**
      * Adds a route to the $routes and $middlewares arrays.
      *
      * @param string $method The HTTP method (GET, POST, PUT, PATCH, DELETE) for the route.
@@ -102,7 +90,14 @@ final class Router
      */
     public function __call($name, $arguments): void
     {
-        array_key_exists($name, $this->routes) ? $this->add($name, ...$arguments) : throw new NotImplementedException();
+        if (array_key_exists($name, $this->routes)) {
+            $this->add($name, ...$arguments);
+        } elseif ($name === 'any') {
+            foreach ($this->request->methods() as $method)
+                $this->add($method, ...$arguments);
+        } else {
+            throw new NotImplementedException();
+        }
     }
 
     /**
