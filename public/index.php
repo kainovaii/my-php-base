@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 use application\core\Application;
 use application\controllers\HomeController;
@@ -13,8 +13,8 @@ define('ROOT_DIR', dirname(__DIR__));
 // Include the Composer autoloader to load the application classes
 // This is a standard step in PHP application setup
 require_once ROOT_DIR .
-             DIRECTORY_SEPARATOR . 'vendor' . 
-             DIRECTORY_SEPARATOR . 'autoload.php';
+    DIRECTORY_SEPARATOR . 'vendor' .
+    DIRECTORY_SEPARATOR . 'autoload.php';
 
 // Create a new instance of the Application class
 $application = new Application();
@@ -24,7 +24,7 @@ $application->middlewares->add('auth', AuthenticationMiddleware::class);
 $application->middlewares->add('admin', AdministratorMiddleware::class);
 
 // Register a GET route for the root path ('/') that maps to the 'index' action
-// of the 'HomeController'
+// of the 'HomeController'. The 'auth' and 'admin' middlewares are applied to this route.
 $application->router->get('/', [HomeController::class, 'index'], ['auth', 'admin']);
 
 // Run the application

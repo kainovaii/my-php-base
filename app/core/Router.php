@@ -142,9 +142,9 @@ final class Router
     }
 
     /**
-     * Verifies and executes the middleware associated with the current route.
+     * Verifies and executes the middlewares associated with the current route.
      *
-     * @param null|string|array $middleware The middleware to be executed.
+     * @param null|string|array $middlewares The middlewares to be executed.
      */
     private function verify(string | array | null $middlewares): void
     {
