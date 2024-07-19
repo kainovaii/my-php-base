@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace application\core;
 
@@ -10,7 +10,7 @@ use Exception;
  * The MiddlewareStack class is responsible for managing the application's middleware stack.
  * It provides methods to add new middleware to the stack and to check if a specific middleware exists in the stack.
  */
-final class MiddlewareStack  
+final class MiddlewareStack
 {
     /**
      * An associative array that stores the registered middleware, with the middleware alias as the key and the middleware class name as the value.

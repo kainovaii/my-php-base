@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace application\core;
 
@@ -26,7 +26,7 @@ use application\core\http\exceptions\MethodNotAllowedException;
  * @method void delete(string $path, string|callable|array $action, null|string|array $middleware = null)
  * @method void any(string $path, string|callable|array $action, null|string|array $middleware = null)
  */
-final class Router  
+final class Router
 {
     private Request $request;
 
@@ -153,7 +153,7 @@ final class Router
 
             foreach ($middlewares as $middleware) {
                 $middleware = MiddlewareStack::has($middleware);
-            
+
                 $middleware = new $middleware();
                 call_user_func([$middleware, 'handle']) ?: throw new ForbiddenException();
             }

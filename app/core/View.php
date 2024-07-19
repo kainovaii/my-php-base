@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace application\core;
 
@@ -9,14 +9,16 @@ namespace application\core;
  * 
  * This class is responsible for rendering the view content and its layout.
  */
-final class View  
+final class View
 {
     public static $MAIN_LAYOUT = 'main';
 
     private const VIEW_EXTENS = '.view.php';
     private const LAYOUT_EXTENS = '.layout.php';
 
-    public function __construct(private string $name, private string $layout, private array $params = []) {  }
+    public function __construct(private string $name, private string $layout, private array $params = [])
+    {
+    }
 
     /**
      * Retrieves the content of the view file.
@@ -26,12 +28,12 @@ final class View
     private function view_content(): string
     {
         foreach ($this->params as $key => $value) $$key = $value;
-        
+
         ob_start();
 
-        require_once Application::$ROOT_DIR . 
-                     DIRECTORY_SEPARATOR . 'views' . 
-                     DIRECTORY_SEPARATOR . $this->name . self::VIEW_EXTENS;
+        require_once Application::$ROOT_DIR .
+            DIRECTORY_SEPARATOR . 'views' .
+            DIRECTORY_SEPARATOR . $this->name . self::VIEW_EXTENS;
 
         return ob_get_clean();
     }
@@ -44,13 +46,13 @@ final class View
     private function layout_content(): string
     {
         foreach ($this->params as $key => $value) $$key = $value;
-        
+
         ob_start();
 
-        require_once Application::$ROOT_DIR . 
-                     DIRECTORY_SEPARATOR . 'views' . 
-                     DIRECTORY_SEPARATOR . 'layouts' . 
-                     DIRECTORY_SEPARATOR . $this->layout . self::LAYOUT_EXTENS;
+        require_once Application::$ROOT_DIR .
+            DIRECTORY_SEPARATOR . 'views' .
+            DIRECTORY_SEPARATOR . 'layouts' .
+            DIRECTORY_SEPARATOR . $this->layout . self::LAYOUT_EXTENS;
 
         return ob_get_clean();
     }

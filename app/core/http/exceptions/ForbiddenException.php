@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace application\core\http\exceptions;
 
@@ -12,7 +12,7 @@ use application\core\exceptions\HTTPException;
  * This exception is thrown when the user is not authorized to access the requested resource.
  * It extends the `HTTPException` class and sets the appropriate HTTP status code and error message.
  */
-final class ForbiddenException extends HTTPException 
+final class ForbiddenException extends HTTPException
 {
     /**
      * The HTTP status code for this exception.

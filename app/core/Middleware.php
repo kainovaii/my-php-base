@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace application\core;
 
@@ -8,7 +8,7 @@ namespace application\core;
  * The Middleware interface defines the contract for all middleware components in the application.
  * Middleware components are responsible for handling requests and returning a boolean value indicating whether the request should be processed further.
  */
-interface Middleware 
+interface Middleware
 {
     /**
      * Handles the request and returns a boolean value indicating whether the request should be processed further.
