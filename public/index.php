@@ -26,7 +26,10 @@ $application->middlewares->add('admin', AdministratorMiddleware::class);
 // Register a GET route for the root path ('/') that maps to the 'index' action
 // of the 'HomeController'. The 'auth' and 'admin' middlewares are applied to this route.
 $application->router->get('/', [HomeController::class, 'index'], ['auth', 'admin']);
+
 $application->router->get('/contact', 'contact');
+
+$application->router->post('/contact', fn () => 'Handling Submitted data.');
 
 // Run the application
 $application->run();

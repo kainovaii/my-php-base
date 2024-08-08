@@ -24,4 +24,10 @@ final class Response
         // Set the HTTP status code for the current response
         http_response_code($code);
     }
+
+    public function redirect(?string $path = null): void
+    {
+        header("Location: " . ($path ?? '/'));
+        exit;
+    }
 }
