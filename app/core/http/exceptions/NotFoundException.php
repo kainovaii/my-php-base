@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace application\core\http\exceptions;
 
@@ -12,7 +12,7 @@ use application\core\exceptions\HTTPException;
  * This exception is thrown when the requested resource is not found on the server.
  * It extends the `HTTPException` class and sets the appropriate HTTP status code and error message.
  */
-final class NotFoundException extends HTTPException 
+final class NotFoundException extends HTTPException
 {
     /**
      * The HTTP status code for this exception.
