@@ -51,6 +51,29 @@
     </head>
 
     <body>
+        
+    <header>
+            <nav class="navbar navbar-example navbar-expand-lg bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="javascript:void(0)">Navbar</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-ex-4" aria-expanded="false">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse collapse show" id="navbar-ex-4">
+                        <div class="navbar-nav me-auto">
+                            <a class="nav-item nav-link" href="/">Home</a>
+                            <a class="nav-item nav-link" href="/contact">Contact</a>
+                        </div>
+                                                    
+                        <div class="d-flex navbar-nav">
+                                <a class="nav-item nav-link" href="/login">Login</a>
+                                <a class="nav-item nav-link" href="/register">Register</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
         <div class="container flex-grow-1 container-p-y my-2">
 
             {{content}}
