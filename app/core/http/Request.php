@@ -50,6 +50,27 @@ final class Request
         return strtolower($_POST['_method'] ?? $_SERVER['REQUEST_METHOD']);
     }
 
+    public function get_body(): array
+    {
+        $body = [];
+
+        switch ($this->get_method()) {
+            case 'get':
+                foreach ($_GET as $key => $_value) {
+                    $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+                }
+                break;
+
+            default:
+                foreach ($_POST as $key => $_value) {
+                    $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+                }
+                break;
+        }
+
+        return $body;
+    }
+
     /**
      * Returns the list of supported HTTP methods.
      *

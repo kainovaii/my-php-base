@@ -29,7 +29,5 @@ $application->router->get('/', [HomeController::class, 'index'], ['auth', 'admin
 
 $application->router->get('/contact', 'contact');
 
-$application->router->post('/contact', fn () => $_POST['email']);
-
 // Run the application
 $application->run();
