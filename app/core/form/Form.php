@@ -21,6 +21,11 @@ class Form
      */
     public function end(): void
     {
-        echo '</form>';
+        echo '</form>' . "\n";
+    }
+
+    public function field(string $attribute, string $type = "", bool $is_input_field = true): void
+    {
+        echo (new Field($attribute, $type, $is_input_field));
     }
 }
