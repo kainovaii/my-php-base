@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use application\controllers\ContactController;
 use application\core\Application;
 use application\controllers\HomeController;
 use application\middlewares\AdministratorMiddleware;
@@ -26,8 +27,6 @@ $application->middlewares->add('admin', AdministratorMiddleware::class);
 // Register a GET route for the root path ('/') that maps to the 'index' action
 // of the 'HomeController'. The 'auth' and 'admin' middlewares are applied to this route.
 $application->router->get('/', [HomeController::class, 'index'], ['auth', 'admin']);
-
-$application->router->get('/contact', 'contact');
 
 // Run the application
 $application->run();

@@ -15,6 +15,7 @@ final class View
 
     private const VIEW_EXTENS = '.view.php';
     private const LAYOUT_EXTENS = '.layout.php';
+    private const PARTIAL_EXTENS = '.partial.php';
 
     public function __construct(private string $name, private string $layout, private array $params = [])
     {
@@ -57,14 +58,48 @@ final class View
         return ob_get_clean();
     }
 
+    private function partial_content(string $placeholder): string
+    {
+        foreach ($this->params as $key => $value) $$key = $value;
+
+        $partial = trim($placeholder, "{{}}");
+
+        ob_start();
+
+        require_once Application::$ROOT_DIR .
+            DIRECTORY_SEPARATOR . 'views' .
+            DIRECTORY_SEPARATOR . 'partials' .
+            DIRECTORY_SEPARATOR . $partial . self::PARTIAL_EXTENS;
+
+        return ob_get_clean();
+    }
+
     /**
      * Renders the view content within the layout.
      *
      * @return string The final rendered HTML.
      */
-    private function render(): string
+    private function render_content(): string
     {
         return str_replace('{{content}}', $this->view_content(), $this->layout_content());
+    }
+
+    private function render(string $content): string
+    {
+        $start = strpos($content, '{{');
+        $end = strpos($content, '}}');
+
+        if ($start && $end) {
+            $placeholder = substr($content, $start, ($end - $start) + 2);
+
+            $partial = $this->partial_content($placeholder);
+
+            $content = str_replace($placeholder, $partial, $content);
+
+            return $this->render($content);
+        } else {
+            return $content;
+        }
     }
 
     /**
@@ -74,6 +109,8 @@ final class View
      */
     public function __toString(): string
     {
-        return $this->render();
+        $content = $this->render_content();
+
+        return $this->render($content);
     }
 }

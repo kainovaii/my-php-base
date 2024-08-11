@@ -1,7 +1,10 @@
-<div class="container-xxl container-p-y">
-      <div class="misc-wrapper">
-        <h2 class="mb-2 mx-2"><?= $label ?></h2>
-        <p class="mb-4 mx-2"><?= $message ?></p>
-        <a href="/" class="btn btn-primary">Back to home</a>
-      </div>
-    </div>
+    <!-- Starter Section Section -->
+    <section id="starter-section" class="starter-section section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2><?= $code ?></h2>
+        <p><?= $message ?></p>
+      </div><!-- End Section Title -->
+
+    </section><!-- /Starter Section Section -->

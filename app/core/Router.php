@@ -138,7 +138,7 @@ final class Router
         $this->verify($middleware);
 
         // Execute the resolved action
-        return is_string($action) ? view($action) : call_user_func($action);
+        return is_string($action) ? view($action) : call_user_func($action, $this->request);
     }
 
     /**

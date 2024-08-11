@@ -1,1 +1,15 @@
-<h1>Hello, World!</h1>
+<main class="main">
+
+    {{hero}}
+
+    {{about}}
+
+    {{whyus}}
+
+    {{skills}}
+
+    {{services}}
+
+    {{contact}}
+
+</main>

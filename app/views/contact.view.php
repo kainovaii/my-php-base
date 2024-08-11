@@ -14,7 +14,6 @@
         $form = new Form("post");
 
         $form->field("email", Field::INPUT_EMAIL);
-        $form->field("name", Field::INPUT_TEXT);
         $form->field("subject", Field::INPUT_TEXT);
         $form->field("message", is_input_field: false);
         ?>
