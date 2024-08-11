@@ -74,6 +74,15 @@ final class View
         return ob_get_clean();
     }
 
+    private function render_partial(string $content, int $start, int $end): string
+    {
+        $placeholder = substr($content, $start, ($end - $start) + 2);
+
+        $partial = $this->partial_content($placeholder);
+
+        return str_replace($placeholder, $partial, $content);
+    }
+
     /**
      * Renders the view content within the layout.
      *
@@ -89,17 +98,7 @@ final class View
         $start = strpos($content, '{{');
         $end = strpos($content, '}}');
 
-        if ($start && $end) {
-            $placeholder = substr($content, $start, ($end - $start) + 2);
-
-            $partial = $this->partial_content($placeholder);
-
-            $content = str_replace($placeholder, $partial, $content);
-
-            return $this->render($content);
-        } else {
-            return $content;
-        }
+        return ($start && $end) ? $this->render($this->render_partial($content, $start, $end)) : $content;
     }
 
     /**
