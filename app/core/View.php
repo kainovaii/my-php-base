@@ -17,8 +17,11 @@ final class View
     private const LAYOUT_EXTENS = '.layout.php';
     private const PARTIAL_EXTENS = '.partial.php';
 
-    public function __construct(private string $name, private string $layout, private array $params = [])
-    {
+    public function __construct(
+        private string $name,
+        private string $layout,
+        private array $params = []
+    ) {
     }
 
     /**
