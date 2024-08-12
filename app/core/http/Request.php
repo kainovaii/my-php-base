@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace application\core\http;
 
+use application\core\http\exceptions\NotImplementedException;
+
 /**
  * Represents an HTTP request received by the application.
  *
@@ -13,6 +15,8 @@ namespace application\core\http;
 final class Request
 {
     private const METHODS = ['get', 'post', 'put', 'patch', 'delete'];
+
+    private array $routeParams = [];
 
     /**
      * Gets the path of the current request.
@@ -69,6 +73,27 @@ final class Request
         }
 
         return $body;
+    }
+
+
+    public function get_route_params($param, $default = null): ?string
+    {
+        return $this->routeParams[$param] ?? $default;
+    }
+
+    public function set_route_params($params): void
+    {
+        $this->routeParams = $params;
+    }
+
+
+    public function is_request_method(string $method): bool
+    {
+        if (array_search($method, self::METHODS) !== false) {
+            return $this->get_method() === $method;
+        } else {
+            throw new NotImplementedException();
+        }
     }
 
     /**
