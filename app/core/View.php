@@ -101,7 +101,8 @@ final class View
         $start = strpos($content, '{{');
         $end = strpos($content, '}}');
 
-        return ($start && $end) ? $this->render($this->render_partial($content, $start, $end)) : $content;
+        return ($start && $end) ?
+            $this->render($this->render_partial($content, $start, $end)) : $content;
     }
 
     /**
