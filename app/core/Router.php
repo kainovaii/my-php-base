@@ -105,12 +105,10 @@ final class Router
         return $this->routes[$method] ?? [];
     }
 
-    public function get_action(): mixed
+    public function get_action(string $path, string $method): mixed
     {
-        $method = $this->request->get_method();
-        $url = $this->request->get_path();
         // Trim slashes
-        $url = trim($url, '/');
+        $path = trim($path, '/');
 
         // Get all routes for current request method
         $routes = $this->get_route($method);
@@ -123,9 +121,7 @@ final class Router
             $route = trim($route, '/');
             $routeNames = [];
 
-            if (!$route) {
-                continue;
-            }
+            if (!$route) continue;
 
             // Find all route names from route and save in $routeNames
             if (preg_match_all('/\{(\w+)(:[^}]+)?}/', $route, $matches)) {
@@ -136,7 +132,7 @@ final class Router
             $routeRegex = "@^" . preg_replace_callback('/\{\w+(:([^}]+))?}/', fn ($m) => isset($m[2]) ? "({$m[2]})" : '(\w+)', $route) . "$@";
 
             // Test and match current route against $routeRegex
-            if (preg_match_all($routeRegex, $url, $valueMatches)) {
+            if (preg_match_all($routeRegex, $path, $valueMatches)) {
                 $values = [];
                 for ($i = 1; $i < count($valueMatches); $i++) {
                     $values[] = $valueMatches[$i][0];
@@ -169,7 +165,7 @@ final class Router
         $middleware = $this->middlewares[$method][$path] ?? null;
 
         if (!$action) {
-            $action = $this->get_action();
+            $action = $this->get_action($path, $method);
 
             if ($action === false) {
                 $routes = array_diff_key($this->routes, [$method => null]);
