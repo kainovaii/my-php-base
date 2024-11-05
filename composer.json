@@ -1,5 +1,5 @@
 {
-    "name": "my-php-base",
+    "name": "kainovaii/my-php-base",
     "description": "Lorem ipsum dolor sit amet, consectetur adipis",
     "type": "project",
     "autoload": {
