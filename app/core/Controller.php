@@ -23,13 +23,10 @@ abstract class Controller extends RegisterServiceContainer
     }
 
     function view(string $name, ?string $layout = null, array $params = []): View
-{
-    // If no layout is provided, use the main layout by default
-    $layout = $layout ?? View::$MAIN_LAYOUT;
-
-    // Create a new View object with the provided name, layout, and parameters
-    return new View($name, $layout, $params);
-}
+    {
+        $layout = $layout ?? View::$MAIN_LAYOUT;
+        return new View($name, $layout, $params);
+    }
 
 
     public static function isGranted(mixed $attribute, mixed $subject = null) {
