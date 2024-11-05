@@ -1,0 +1,8 @@
+#!/usr/bin/env php
+<?php
+use application\core\Command;
+
+require __DIR__.'/vendor/autoload.php';
+
+$command = new Command();
+$command->run();

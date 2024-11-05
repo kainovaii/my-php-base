@@ -1,8 +1,5 @@
 <?php
-
-declare(strict_types=1);
-
-namespace application\core;
+namespace App\Core;
 
 /**
  * Represents a view in the application.
@@ -36,7 +33,7 @@ final class View
         ob_start();
 
         require_once Application::$ROOT_DIR .
-            DIRECTORY_SEPARATOR . 'views' .
+            DIRECTORY_SEPARATOR . 'View' .
             DIRECTORY_SEPARATOR . $this->name . self::VIEW_EXTENS;
 
         return ob_get_clean();
@@ -54,7 +51,7 @@ final class View
         ob_start();
 
         require_once Application::$ROOT_DIR .
-            DIRECTORY_SEPARATOR . 'views' .
+            DIRECTORY_SEPARATOR . 'View' .
             DIRECTORY_SEPARATOR . 'layouts' .
             DIRECTORY_SEPARATOR . $this->layout . self::LAYOUT_EXTENS;
 
@@ -70,7 +67,7 @@ final class View
         ob_start();
 
         require_once Application::$ROOT_DIR .
-            DIRECTORY_SEPARATOR . 'views' .
+            DIRECTORY_SEPARATOR . 'View' .
             DIRECTORY_SEPARATOR . 'partials' .
             DIRECTORY_SEPARATOR . $partial . self::PARTIAL_EXTENS;
 

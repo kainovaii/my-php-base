@@ -2,30 +2,14 @@
 
 declare(strict_types=1);
 
-namespace application\core;
+namespace App\Core;
 
-use application\core\http\Request;
-use application\core\http\exceptions\NotFoundException;
-use application\core\http\exceptions\ForbiddenException;
-use application\core\http\exceptions\NotImplementedException;
-use application\core\http\exceptions\MethodNotAllowedException;
+use App\Core\Http\Exception\ForbiddenException;
+use App\Core\Http\Exception\MethodNotAllowedException;
+use App\Core\Http\Exception\NotFoundException;
+use App\Core\Http\Exception\NotImplementedException;
+use App\Core\Http\Request;
 
-/**
- * The Router class is responsible for handling the routing of the application.
- * It maps URL paths to their corresponding actions and resolves the appropriate response based on the requested path and HTTP method.
- *
- * The class provides methods to register routes for different HTTP methods (GET, POST, PUT, PATCH, DELETE) and also supports a wildcard "any" method
- * to register a route for all HTTP methods.
- *
- * The Router class also supports middleware, which can be associated with a specific route. The middleware is executed before the route action is called.
- * 
- * @method void get(string $path, string|callable|array $action, null|string|array $middleware = null)
- * @method void post(string $path, string|callable|array $action, null|string|array $middleware = null)
- * @method void put(string $path, string|callable|array $action, null|string|array $middleware = null)
- * @method void patch(string $path, string|callable|array $action, null|string|array $middleware = null)
- * @method void delete(string $path, string|callable|array $action, null|string|array $middleware = null)
- * @method void any(string $path, string|callable|array $action, null|string|array $middleware = null)
- */
 final class Router
 {
     private Request $request;
@@ -156,7 +140,7 @@ final class Router
      *
      * @return string|View The resolved action, which can be a string or a View object.
      */
-    public function resolve(): string | View | null
+    public function resolve(): string | view | null
     {
         $path = $this->request->get_path();
         $method = $this->request->get_method();
@@ -211,4 +195,5 @@ final class Router
             }
         }
     }
+    
 }

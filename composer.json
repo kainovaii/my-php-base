@@ -1,22 +1,32 @@
 {
-    "name": "ange-arsene/php_mvc_framework",
-    "description": "Minimalistic custom framework created for educational purposes.",
+    "name": "vegas-rp/dashboard",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipis",
     "type": "project",
     "autoload": {
-        "files": [
-            "./app/core/utilities/debug.php",
-            "./app/core/utilities/helpers.php"
-        ],
         "psr-4": {
-            "application\\": "./app"
+            "App\\": "./app",
+            "tests\\": "./tests"
         }
     },
     "authors": [
         {
-            "name": "Ange Arsene",
-            "email": "nkenmandenga@gmail.com"
+            "name": "KainoVaii",
+            "email": "KainoVaii@proton.me"
         }
     ],
     "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "symfony/console": "7.2.x-dev",
+        "illuminate/database": "^12.0@dev",
+        "illuminate/events": "^12.0@dev",
+        "vlucas/phpdotenv": "^5.6@dev",
+        "filp/whoops": "^2.16",
+        "symfony/filesystem": "7.2.x-dev",
+        "algolia/algoliasearch-client-php": "4.0",
+        "symfony/error-handler": "7.2.x-dev"
+    },
+    "require-dev": {
+        "symfony/maker-bundle": "^1.0@dev",
+        "phpunit/phpunit": "^11.4"
+    }
 }

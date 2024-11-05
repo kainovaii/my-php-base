@@ -1,33 +1,30 @@
 <?php
 
-declare(strict_types=1);
 
-use application\core\Application;
-use application\controllers\HomeController;
-use application\middlewares\AdministratorMiddleware;
-use application\middlewares\AuthenticationMiddleware;
+use App\Core\Application;
+use App\Http\Controller\HomeController;
 
-// Define the root directory of the application
+
 define('ROOT_DIR', dirname(__DIR__));
 
-// Include the Composer autoloader to load the application classes
-// This is a standard step in PHP application setup
 require_once ROOT_DIR .
     DIRECTORY_SEPARATOR . 'vendor' .
     DIRECTORY_SEPARATOR . 'autoload.php';
 
-// Create a new instance of the Application class
-$application = new Application();
+$app = new Application();
 
-// Add the authentication middleware to the list of middlewares
-$application->middlewares->add('auth', AuthenticationMiddleware::class);
-$application->middlewares->add('admin', AdministratorMiddleware::class);
+$app->registerController($app, HomeController::class);
 
-// Register a GET route for the root path ('/') that maps to the 'index' action
-// of the 'HomeController'. The 'auth' and 'admin' middlewares are applied to this route.
-$application->router->get('/', [HomeController::class, 'index']);
-$application->router->post('/contact', [HomeController::class, 'contact']);
-$application->router->get('/users/{id}', [HomeController::class, 'user']);
+/*
+$app->registerController($app, ContentController::class);
+$app->registerController($app, ContentApiController::class);
+$app->registerController($app, UserController::class);
+$app->registerController($app, RoleApiController::class);
+$app->registerController($app, RoleController::class);
+$app->registerController($app, SettingController::class);
+$app->registerController($app, FileController::class);
+$app->registerController($app, DataModelApiController::class);
+$app->registerController($app, DataModelController::class);
+*/
 
-// Run the application
-$application->run();
+$app->run();

@@ -2,85 +2,70 @@
 
 declare(strict_types=1);
 
-namespace application\core;
+namespace App\Core;
 
-use Exception;
-use application\core\http\Response;
-use application\core\exceptions\HTTPException;
+use App\Core\Http\Response;
+use App\Core\Http\Router\Route;
 
-/**
- * The Application class is the main entry point for the application. It is responsible for
- * initializing the necessary components, handling the request routing, and executing the
- * appropriate actions.
- */
 final class Application
 {
-    /**
-     * The Router object responsible for handling the application's routing.
-     */
     public Router $router;
 
-    /**
-     * The Response object used to manage the application's HTTP responses.
-     */
     public Response $response;
 
-    /**
-     * The MiddlewareStack object used to manage the application's middleware.
-     */
     public MiddlewareStack $middlewares;
 
-    /**
-     * The root directory of the application.
-     */
+    public Database $database;
+
     public static string $ROOT_DIR;
 
-    /**
-     * Constructs a new instance of the Application class.
-     *
-     * In the constructor, the Router, Response, and MiddlewareStack objects are created,
-     * and the root directory of the application is set.
-     */
     public function __construct()
     {
         $this->router = new Router();
         $this->response = new Response();
         $this->middlewares = new MiddlewareStack();
+        $this->database = new Database();
 
         self::$ROOT_DIR = dirname(__DIR__);
     }
 
-    /**
-     * Runs the application by resolving the appropriate action based on the requested URL.
-     *
-     * This method calls the `resolve()` method of the Router object, which returns the
-     * appropriate action to be executed. The result of the action is then echoed to the
-     * output.
-     */
     public function run(): void
     {
-        try {
-            echo $this->router->resolve();
-        } catch (Exception $exception) {
-            $this->handle($exception);
-        }
+        session_start();
+
+        $this->database->connection();
+
+        //require_once 'Config.php';
+        
+        $whoops = new \Whoops\Run;
+        $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+        $whoops->register();
+
+        echo $this->router->resolve();
     }
 
-    /**
-     * Handles exceptions that occur during the application's execution.
-     *
-     * If the exception is a subclass of HTTPException, the response status code is set
-     * accordingly, and the appropriate error view is rendered. For other types of
-     * exceptions, a generic error message may be displayed or logged.
-     *
-     * @param Exception $exception The exception to be handled.
-     */
-    private function handle(Exception $exception): void
+    function registerController($app, $controller)
     {
-        if (is_subclass_of($exception, HTTPException::class)) {
-            $this->response->set_status_code($exception->getCode());
-            echo view('error', 'main-error', $exception->parameters());
+        $class = new \ReflectionClass($controller);
+    
+        $methods = $class->getMethods();
+    
+        foreach ($methods as $mehtod)
+        {
+            $attributes = $mehtod->getAttributes(Route::class);
+        
+            foreach ($attributes as $attribute)
+            {
+                $instace = $attribute->newInstance();
+    
+                if ($instace->getMethod() === 'GET') {
+                    $app->router->get($instace->getRoute(), [$controller, $mehtod->getName()]);
+                }
+    
+                if ($instace->getMethod() === 'POST') {
+                    $app->router->post($instace->getRoute(), [$controller, $mehtod->getName()]);
+                }
+            }
         }
-        // Add additional exception handling logic as needed
     }
 }

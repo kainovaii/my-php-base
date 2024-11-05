@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace application\core\http;
+namespace App\Core\Http;
 
-use application\core\http\exceptions\NotImplementedException;
+use App\Core\Http\Exception\NotImplementedException;
 
 /**
  * Represents an HTTP request received by the application.
@@ -64,7 +64,10 @@ final class Request
                     $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
                 }
                 break;
-
+            case 'put':
+                parse_str(file_get_contents("php://input"), $data);
+                $body = $data;
+            
             default:
                 foreach ($_POST as $key => $_value) {
                     $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
@@ -74,7 +77,6 @@ final class Request
 
         return $body;
     }
-
 
     public function get_route_params($param, $default = null): ?string
     {

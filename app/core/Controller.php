@@ -1,15 +1,44 @@
 <?php
 
-declare(strict_types=1);
+namespace App\Core;
 
-namespace application\core;
+use App\Core\Http\Security\Security;
+use App\Core\Http\Service\RegisterServiceContainer;
+use App\Core\Http\User\LoggedUser;
+use App\Core\Http\User\UserInterface;
+use App\Core\View;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 
-/**
- * The Controller class is an abstract base class that serves as a foundation for all controllers in the application.
- * Controllers are responsible for handling incoming requests, processing the request data, and returning appropriate responses.
- */
-abstract class Controller
+abstract class Controller extends RegisterServiceContainer
 {
-    // The Controller class may contain common properties and methods that are shared across all controllers in the application.
-    // These could include things like request handling, response generation, dependency injection, and other utility functions.
+    public function getUserOrThrow(): UserInterface
+    {
+        $user = new LoggedUser();
+
+        if (!$user instanceof UserInterface)
+        {
+            throw new AccessDeniedException();
+        }
+        return $user;
+    }
+
+    function view(string $name, ?string $layout = null, array $params = []): View
+{
+    // If no layout is provided, use the main layout by default
+    $layout = $layout ?? View::$MAIN_LAYOUT;
+
+    // Create a new View object with the provided name, layout, and parameters
+    return new View($name, $layout, $params);
+}
+
+
+    public static function isGranted(mixed $attribute, mixed $subject = null) {
+        $security = new Security();
+        if (!$security->authorizationChecker($attribute, $subject)) trigger_error('Access error'); 
+    }
+
+    public function getControllerReflector()
+    {
+        return new \ReflectionClass($this);
+    }
 }

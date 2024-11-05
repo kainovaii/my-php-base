@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace application\core\http;
+namespace App\Core\Http;
 
 /**
  * Represents an HTTP response that can be sent back to the client.
