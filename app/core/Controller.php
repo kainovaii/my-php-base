@@ -28,6 +28,11 @@ abstract class Controller extends RegisterServiceContainer
         return new View($name, $layout, $params);
     }
 
+    public function redirect(string $location): void
+    {
+        header('location:'.$location);
+    }
+
 
     public static function isGranted(mixed $attribute, mixed $subject = null) {
         $security = new Security();

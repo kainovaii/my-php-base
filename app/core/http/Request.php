@@ -54,7 +54,7 @@ final class Request
         return strtolower($_POST['_method'] ?? $_SERVER['REQUEST_METHOD']);
     }
 
-    public function get_body(): array
+    public function getBody(): array
     {
         $body = [];
 
@@ -78,7 +78,7 @@ final class Request
         return $body;
     }
 
-    public function get_route_params($param, $default = null): ?string
+    public function getParams($param, $default = null): ?string
     {
         return $this->routeParams[$param] ?? $default;
     }

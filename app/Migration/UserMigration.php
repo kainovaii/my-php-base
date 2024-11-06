@@ -20,6 +20,7 @@ class UserMigration extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('role');
+            $table->integer('status');
         });
     }
 

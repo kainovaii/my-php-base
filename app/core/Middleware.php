@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace application\core;
+namespace App\Core;
 
 interface Middleware
 {

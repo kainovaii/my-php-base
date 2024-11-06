@@ -7,7 +7,7 @@ use Attribute;
 #[Attribute(Attribute::TARGET_METHOD)]
 class Route {
 
-    public function __construct(private string $route, private string $method)
+    public function __construct(private string $route, private string $method, private string $midleware)
     {
      /**
       * Code
@@ -22,5 +22,10 @@ class Route {
     public function getMethod(): string
     {
         return $this->method;
+    }
+
+    public function getMiddleware(): string
+    {
+        return $this->midleware;
     }
 }   

@@ -4,13 +4,14 @@ namespace App\Http\Controller;
 use App\Core\Controller;
 use App\Core\Http\Request;
 use App\Core\Http\Router\Route;
+use App\Core\Http\Service\RegisterServiceContainer;
 use App\Core\View;
 use App\Http\Security\ContentVoter;
 
 class HomeController extends Controller
 {
-    #[Route('/', 'GET')]
-    public function test(Request $_request): View
+    #[Route('/', 'GET', 'default')]
+    public function home(Request $_request): View
     {
         $this->isGranted(ContentVoter::READ);
 

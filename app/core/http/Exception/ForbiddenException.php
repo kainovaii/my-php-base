@@ -26,5 +26,5 @@ final class ForbiddenException extends HTTPException
      *
      * @var string
      */
-    protected $message = 'Oops! 😖 You don\'t have permission to access this page.';
+    protected $message = 'Oops! 😖 You are not logged';
 }

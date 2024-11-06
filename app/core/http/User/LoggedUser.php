@@ -9,7 +9,7 @@ class LoggedUser implements UserInterface {
         return $_SESSION['user']['role']['name'];
     }
 
-    public function getUser(): array
+    public function getUser(): mixed
     {
         if (isset($_SESSION['user']))
         {
@@ -21,7 +21,7 @@ class LoggedUser implements UserInterface {
 
     public function getUserIdentifier(): string
     {
-        return $_SESSION['user']['username'];
+        return $_SESSION['user']->username;
     }
 
 }

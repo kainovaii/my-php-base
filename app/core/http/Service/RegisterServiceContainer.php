@@ -2,14 +2,21 @@
 
 namespace App\Core\Http\Service;
 
-use App\Repository\User;
+use App\Domain\Auth\UserRepository;
+use App\Domain\Auth\AuthService;
+use App\Core\Session;
 
-class RegisterServiceContainer {
-    protected User $userRepository;
+abstract class RegisterServiceContainer {
+    protected UserRepository $userRepository;
+    protected AuthService $userService;
+    protected Session $session;
+    private static $instance;
     
     public function __construct()
     {
         $container = new ServiceContainer();
-        $this->userRepository = $container->get(User::class);
+        $this->userRepository = $container->get(UserRepository::class);
+        $this->userService = $container->get(AuthService::class);
+        $this->session = $container->get(Session::class);
     }
 }

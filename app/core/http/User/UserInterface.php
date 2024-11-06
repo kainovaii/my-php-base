@@ -6,7 +6,7 @@ interface UserInterface {
     
     public function getRoles(): string;
 
-    public function getUser(): array;
+    public function getUser(): mixed;
 
     public function getUserIdentifier(): string;
 }

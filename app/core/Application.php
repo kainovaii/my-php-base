@@ -34,8 +34,6 @@ final class Application
         session_start();
 
         $this->database->connection();
-
-        //require_once 'Config.php';
         
         $whoops = new \Whoops\Run;
         $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
@@ -59,7 +57,7 @@ final class Application
                 $instace = $attribute->newInstance();
     
                 if ($instace->getMethod() === 'GET') {
-                    $app->router->get($instace->getRoute(), [$controller, $mehtod->getName()]);
+                    $app->router->get($instace->getRoute(), [$controller, $mehtod->getName()], $instace->getMiddleware());
                 }
     
                 if ($instace->getMethod() === 'POST') {
