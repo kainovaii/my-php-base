@@ -8,7 +8,7 @@ use App\Core\Middleware;
 
 final class AuthMiddleware implements Middleware
 {
-    public function handle() : bool
+    public function handle() : mixed
     {
         if (isset($_SESSION['user'])) {
             return true;

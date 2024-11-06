@@ -3,6 +3,7 @@
 namespace App\Domain\Auth;
 
 use App\Core\Http\Request;
+use App\Core\Http\Service\Service;
 use App\Domain\Auth\Exception\UserBannedException;
 use App\Domain\Auth\Exception\UserNotFoundException;
 
@@ -18,7 +19,7 @@ class AuthService extends UserRepository {
             {
                 if (password_verify($password, $user->password))
                 {
-                    $_SESSION['user'] = $user;
+                    Service::get()->session->set('user', $user);
                     return true;
                 }
             } else {

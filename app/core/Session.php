@@ -4,19 +4,23 @@ namespace App\Core;
 
 class Session
 {
-    public static function set($identifier, $value){
+    public static function set($identifier, $value)
+    {
         $_SESSION[$identifier] = $value;
     }
 
-    public static function get($identifier){
+    public static function get($identifier)
+    {
         return (isset($_SESSION[$identifier]))? $_SESSION[$identifier] : '';
     }
 
-    public static function exists($identifier){
+    public static function exists($identifier)
+    {
         return isset($_SESSION[$identifier]);
     }
 
-    public static function delete($identifier){
+    public static function delete($identifier)
+    {
         unset($_SESSION[$identifier]);
     }
 }
