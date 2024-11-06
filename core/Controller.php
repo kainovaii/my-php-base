@@ -33,7 +33,6 @@ abstract class Controller extends RegisterServiceContainer
         header('location:'.$location);
     }
 
-
     public static function isGranted(mixed $attribute, mixed $subject = null) {
         $security = new Security();
         if (!$security->authorizationChecker($attribute, $subject)) trigger_error('Access error'); 

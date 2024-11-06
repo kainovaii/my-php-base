@@ -16,7 +16,6 @@ final class AuthMiddleware implements Middleware
             header("location: /users/login");
             exit();
         }
-
         return true;
     }
 }
