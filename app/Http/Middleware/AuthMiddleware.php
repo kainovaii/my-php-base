@@ -8,13 +8,14 @@ use App\Core\Middleware;
 
 final class AuthMiddleware implements Middleware
 {
-    public function handle() : mixed
+    public function handle() : bool
     {
-        if (isset($_SESSION['user'])) {
+        if(!isset($_SESSION['user'])) {
+            ob_start();
+            header("location: /users/login");
+            exit();
+        } else { 
             return true;
-        } else {
-            return false;
         }
-        
     }
 }

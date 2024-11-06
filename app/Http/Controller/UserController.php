@@ -5,7 +5,6 @@ use App\Core\Controller;
 use App\Core\Http\Request;
 use App\Core\Http\Router\Route;
 use App\Core\View;
-use App\Http\Security\ContentVoter;
 
 class UserController extends Controller
 {

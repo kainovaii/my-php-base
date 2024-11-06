@@ -6,5 +6,5 @@ namespace App\Core;
 
 interface Middleware
 {
-    public function handle(): mixed;
+    public function handle(): bool;
 }
