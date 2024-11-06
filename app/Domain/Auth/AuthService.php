@@ -33,7 +33,7 @@ class AuthService extends UserRepository {
 
     public function signout(): bool
     {
-        unset($_SESSION['user']);
+        Service::get()->session->delete('user');
         return true;
     }
 }

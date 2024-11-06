@@ -2,7 +2,7 @@
 
 namespace App\Domain\Auth\Exception;
 
-use App\Core\Exception\HTTPException;
+use Core\Exception\HTTPException;
 
 final class UserBannedException extends HTTPException
 {
