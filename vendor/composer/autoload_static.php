@@ -107,6 +107,7 @@ class ComposerStaticInit471b56651b543f68df3c87e7d0c32d5f
         ),
         'C' => 
         array (
+            'Core\\' => 5,
             'Carbon\\Doctrine\\' => 16,
             'Carbon\\' => 7,
         ),
@@ -337,6 +338,10 @@ class ComposerStaticInit471b56651b543f68df3c87e7d0c32d5f
         'DeepCopy\\' => 
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
+        ),
+        'Core\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/core',
         ),
         'Carbon\\Doctrine\\' => 
         array (

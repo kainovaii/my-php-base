@@ -1,10 +1,10 @@
 <?php
 namespace App\Http\Controller;
 
-use App\Core\Controller;
-use App\Core\Http\Request;
-use App\Core\Http\Router\Route;
-use App\Core\View;
+use Core\Controller;
+use Core\Http\Request;
+use Core\Http\Router\Route;
+use Core\View;
 
 class UserController extends Controller
 {

@@ -2,8 +2,8 @@
 
 namespace App\Http\Security;
 
-use App\Core\Http\Security\VoterInterface;
-use App\Core\Http\User\UserInterface;
+use Core\Http\Security\VoterInterface;
+use Core\Http\User\UserInterface;
 
 class ContentVoter implements VoterInterface
 {

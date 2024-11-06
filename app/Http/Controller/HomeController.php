@@ -1,11 +1,11 @@
 <?php
 namespace App\Http\Controller;
 
-use App\Core\Controller;
-use App\Core\Http\Request;
-use App\Core\Http\Router\Route;
-use App\Core\Http\Service\RegisterServiceContainer;
-use App\Core\View;
+use Core\Controller;
+use Core\Http\Request;
+use Core\Http\Router\Route;
+use Core\Http\Service\RegisterServiceContainer;
+use Core\View;
 use App\Http\Security\ContentVoter;
 
 class HomeController extends Controller

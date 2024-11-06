@@ -2,8 +2,8 @@
 
 namespace App\Domain\Auth;
 
-use App\Core\Http\Request;
-use App\Core\Http\Service\Service;
+use Core\Http\Request;
+use Core\Http\Service\Service;
 use App\Domain\Auth\Exception\UserBannedException;
 use App\Domain\Auth\Exception\UserNotFoundException;
 

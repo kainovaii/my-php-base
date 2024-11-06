@@ -1,6 +1,6 @@
 <?php
 
-use App\Core\Application;
+use Core\Application;
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Api\UserApiController;
 use App\Http\Controller\HomeController;

@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
-        'name' => 'vegas-rp/dashboard',
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
-        'reference' => 'f239eaa757bc87db69d2bc917208f906131119d9',
+        'name' => 'kainovaii/my-php-base',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
+        'reference' => '48fc13dd5d31571bc1068b52623633dc8d32f188',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -183,6 +183,15 @@
             'aliases' => array(
                 0 => '12.x-dev',
             ),
+            'dev_requirement' => false,
+        ),
+        'kainovaii/my-php-base' => array(
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => '48fc13dd5d31571bc1068b52623633dc8d32f188',
+            'type' => 'project',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
             'dev_requirement' => false,
         ),
         'myclabs/deep-copy' => array(
@@ -365,10 +374,10 @@
             'aliases' => array(
                 0 => '1.0.x-dev',
             ),
-            'dev_requirement' => true,
+            'dev_requirement' => false,
         ),
         'psr/event-dispatcher-implementation' => array(
-            'dev_requirement' => true,
+            'dev_requirement' => false,
             'provided' => array(
                 0 => '1.0',
             ),
@@ -704,11 +713,11 @@
         'symfony/event-dispatcher' => array(
             'pretty_version' => '7.2.x-dev',
             'version' => '7.2.9999999.9999999-dev',
-            'reference' => '1b5d04eb92dcde945a198e8bc7d28d2b0820015b',
+            'reference' => '910c5db85a5356d0fea57680defec4e99eb9c8c1',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/event-dispatcher',
             'aliases' => array(),
-            'dev_requirement' => true,
+            'dev_requirement' => false,
         ),
         'symfony/event-dispatcher-contracts' => array(
             'pretty_version' => 'dev-main',
@@ -719,10 +728,10 @@
             'aliases' => array(
                 0 => '3.5.x-dev',
             ),
-            'dev_requirement' => true,
+            'dev_requirement' => false,
         ),
         'symfony/event-dispatcher-implementation' => array(
-            'dev_requirement' => true,
+            'dev_requirement' => false,
             'provided' => array(
                 0 => '2.0|3.0',
             ),
@@ -933,15 +942,6 @@
             'install_path' => __DIR__ . '/../theseer/tokenizer',
             'aliases' => array(),
             'dev_requirement' => true,
-        ),
-        'vegas-rp/dashboard' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
-            'reference' => 'f239eaa757bc87db69d2bc917208f906131119d9',
-            'type' => 'project',
-            'install_path' => __DIR__ . '/../../',
-            'aliases' => array(),
-            'dev_requirement' => false,
         ),
         'vlucas/phpdotenv' => array(
             'pretty_version' => 'dev-master',

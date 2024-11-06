@@ -1,9 +1,9 @@
 <?php
 namespace App\Http\Api;
 
-use App\Core\Controller;
-use App\Core\Http\Request;
-use App\Core\Http\Router\Route;
+use Core\Controller;
+use Core\Http\Request;
+use Core\Http\Router\Route;
 
 class UserApiController extends Controller
 {
