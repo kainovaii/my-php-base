@@ -13,7 +13,8 @@ class LoggedUser implements UserInterface {
 
     public function getUser(): mixed
     {
-        if ($this->isLogged()) {
+        if ($this->isLogged())
+        {
             return Service::get()->session->get('user');
         }
         return [];
@@ -21,7 +22,11 @@ class LoggedUser implements UserInterface {
 
     public function getUserIdentifier(): string
     {
-        return Service::get()->session->get('user')->username;
+        if ($this->isLogged())
+        {
+            return Service::get()->session->get('user')->username;
+        }
+        return 'visitor';
     }
 
     public function isLogged(): bool

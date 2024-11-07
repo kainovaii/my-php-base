@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
+use Core\Http\Middleware\MiddlewareInterface;
 use Core\Http\Service\Service;
-use Core\Middleware;
 
-final class AuthMiddleware implements Middleware
+final class AuthMiddleware implements MiddlewareInterface
 {
     public function handle() : bool
     {

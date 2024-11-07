@@ -2,6 +2,10 @@
 
 namespace Core\Http\Service;
 
+use App\Domain\Blog\BlogModel;
+use App\Domain\Blog\BlogRepository;
+use App\Domain\Blog\Blog;
+use App\Domain\Blog\BlogService;
 use Core\Http\User\LoggedUser;
 use Core\Http\User\UserInterface;
 use App\Domain\Auth\UserRepository;
@@ -14,7 +18,8 @@ class RegisterServiceContainer {
     public AuthService $userService;
     public Session $session;
     public UserInterface $loggedUser;
-
+    public BlogRepository $blogRepository;
+    public BlogService $blog;
     public static array $_instance = [];
     
     public function __construct()
@@ -29,6 +34,8 @@ class RegisterServiceContainer {
         $this->userService = $container->get(AuthService::class);
         $this->session = $container->get(Session::class);
         $this->loggedUser = $container->get(LoggedUser::class);
+        $this->blogRepository = $container->get(BlogRepository::class);
+        $this->blog = $container->get(BlogService::class);
     }
 
     public static function get()

@@ -8,6 +8,7 @@ use Core\Http\Exception\ForbiddenException;
 use Core\Http\Exception\MethodNotAllowedException;
 use Core\Http\Exception\NotFoundException;
 use Core\Http\Exception\NotImplementedException;
+use Core\Http\Middleware\MiddlewareStack;
 use Core\Http\Request;
 
 final class Router
@@ -72,12 +73,12 @@ final class Router
             if (!$route) continue;
 
             // Find all route names from route and save in $routeNames
-            if (preg_match_all('/\{(\w+)(:[^}]+)?}/', $route, $matches)) {
+            if (preg_match_all('/\{([a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)(:[^}]+)?}/', $route, $matches)) {
                 $routeNames = $matches[1];
             }
 
             // Convert route name into regex pattern
-            $routeRegex = "@^" . preg_replace_callback('/\{\w+(:([^}]+))?}/', fn ($m) => isset($m[2]) ? "({$m[2]})" : '(\w+)', $route) . "$@";
+            $routeRegex = "@^" . preg_replace_callback('/\{([a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)(:[^}]+)?}/', fn ($m) => isset($m[2]) ? "({$m[2]})" : '(\w+)', $route) . "$@";
 
             // Test and match current route against $routeRegex
             if (preg_match_all($routeRegex, $path, $valueMatches)) {

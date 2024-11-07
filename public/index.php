@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Api\BlogApiController;
+use App\Http\Controller\BlogController;
 use Core\Application;
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Api\UserApiController;
@@ -21,5 +23,7 @@ $app->middlewares->add('default', DefaultMiddleware::class);
 $app->registerController($app, HomeController::class);
 $app->registerController($app, UserController::class);
 $app->registerController($app, UserApiController::class);
+$app->registerController($app, BlogController::class);
+$app->registerController($app, BlogApiController::class);
 
 $app->run();

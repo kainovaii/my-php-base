@@ -56,7 +56,7 @@ final class Request
 
     public function getBody(): array
     {
-        $body = [];
+        $body = array();
 
         switch ($this->get_method()) {
             case 'get':

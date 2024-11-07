@@ -2,6 +2,7 @@
 
 namespace Core\Http\Security;
 
+use App\Http\Security\BlogVoter;
 use App\Http\Security\ContentVoter;
 use Core\Http\User\LoggedUser;
 
@@ -12,7 +13,7 @@ class Security
         $permission = new Permission();
         $user = new LoggedUser();
 
-        $permission->addVoter(new ContentVoter());
+        $permission->addVoter(new BlogVoter());
 
         $req = $permission->can($user, $attribute, $subject);
 

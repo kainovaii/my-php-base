@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Core;
 
 use Core\Database\Database;
+use Core\Http\Middleware\MiddlewareStack;
 use Core\Http\Response;
 use Core\Http\Router\Route;
 
