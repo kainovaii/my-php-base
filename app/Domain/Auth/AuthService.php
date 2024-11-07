@@ -2,6 +2,7 @@
 
 namespace App\Domain\Auth;
 
+use App\Domain\Auth\Exception\IncorectPasswordException;
 use Core\Http\Request;
 use Core\Http\Service\Service;
 use App\Domain\Auth\Exception\UserBannedException;
@@ -21,14 +22,15 @@ class AuthService extends UserRepository {
                 {
                     Service::get()->session->set('user', $user);
                     return true;
+                } else {
+                    throw new IncorectPasswordException();
                 }
             } else {
                 throw new UserBannedException();
             }
         } else {
             throw new UserNotFoundException(); 
-        }
-        return false;       
+        }    
     }
 
     public function signout(): bool

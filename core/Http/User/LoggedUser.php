@@ -2,31 +2,31 @@
 
 namespace Core\Http\User;
 
+use Core\Http\Service\Service;
+
 class LoggedUser implements UserInterface {
 
     public function getRoles(): string
     {
-        return $_SESSION['user']->role;
+        return Service::get()->session->get('user')->role;
     }
 
     public function getUser(): mixed
     {
-        if (isset($_SESSION['user']))
-        {
-            return $_SESSION['user'];
-        } else {
-            return [];
+        if ($this->isLogged()) {
+            return Service::get()->session->get('user');
         }
+        return [];
     }
 
     public function getUserIdentifier(): string
     {
-        return $_SESSION['user']->username;
+        return Service::get()->session->get('user')->username;
     }
 
     public function isLogged(): bool
     {
-        if (isset($_SESSION['user'])) { return true; }
+        if (isset(Service::get()->session->get('user')->username)) { return true; }
         return false;
     }
 }
