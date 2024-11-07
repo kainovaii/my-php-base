@@ -1,5 +1,5 @@
 <?php
-namespace Core;
+namespace Core\Database;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Events\Dispatcher;

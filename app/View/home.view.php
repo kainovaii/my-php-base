@@ -1,5 +1,4 @@
 <h1>Hello world</h1>
-
 <table>
 <tr>
     <th>Username</th>

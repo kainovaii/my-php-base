@@ -1,6 +1,6 @@
 #!/usr/bin/env php
 <?php
-use application\core\Command;
+use Core\Command;
 
 require __DIR__.'/vendor/autoload.php';
 

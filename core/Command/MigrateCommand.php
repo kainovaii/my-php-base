@@ -8,7 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Illuminate\Database\Capsule\Manager as DB;
-use Core\Database;
+use Core\Database\Database;
 
 #[AsCommand(
     name: 'migration:migrate',

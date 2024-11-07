@@ -67,7 +67,7 @@ final class View
         ob_start();
 
         require_once Application::$ROOT_DIR .
-            DIRECTORY_SEPARATOR . 'View' .
+            DIRECTORY_SEPARATOR . 'App/View' .
             DIRECTORY_SEPARATOR . 'partials' .
             DIRECTORY_SEPARATOR . $partial . self::PARTIAL_EXTENS;
 

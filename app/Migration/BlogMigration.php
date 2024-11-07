@@ -1,11 +1,12 @@
 <?php
-namespace application\migrations;
+
+namespace App\Migration;
 
 use Core\Database\Migration\Migration;
 use Core\Database\Migration\MigrationInterface;
 use Illuminate\Database\Schema\Blueprint;
 
-class UserMigration extends Migration implements MigrationInterface
+class BlogMigration extends Migration implements MigrationInterface
 {
     /**
      * Run the migrations.
@@ -14,13 +15,10 @@ class UserMigration extends Migration implements MigrationInterface
      */
     public function up(): void
     {
-        $this->schema->create('users', function (Blueprint $table) {
+        $this->schema->create('blog', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
-            $table->string('email');
-            $table->string('password');
-            $table->string('role');
-            $table->integer('status');
+            $table->string('slug');
+            $table->string('title');
         });
     }
 

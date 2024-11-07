@@ -4,7 +4,6 @@ namespace App\Http\Controller;
 use Core\Controller;
 use Core\Http\Request;
 use Core\Http\Router\Route;
-use Core\Http\Service\RegisterServiceContainer;
 use Core\View;
 use App\Http\Security\ContentVoter;
 
