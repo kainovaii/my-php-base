@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Domain\Blog\Event;
+namespace App\Domain\Auth\Event;
 
 use Core\Http\Listener\Event;
 
-class BlogCreateEvent extends Event
+class UserLastLoginEvent extends Event
 {
+
     /**
      * @var object
      */

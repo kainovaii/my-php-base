@@ -2,6 +2,7 @@
 
 namespace App\Domain\Auth;
 
+use App\Domain\Auth\Event\UserLastLoginEvent;
 use Core\Http\Request;
 use Core\Http\Service\Service;
 use App\Domain\Auth\Exception\UserBannedException;
@@ -19,6 +20,7 @@ class AuthService extends UserRepository {
                 if (password_verify($password, $user->password))
                 {
                     Service::get()->session->set('user', $user);
+                    Service::get()->dispatcher->dispatch(new UserLastLoginEvent($user));
                     return true;
                 } else {
                     Service::get()->flash->error('Sorry incorect password !');

@@ -2,8 +2,12 @@
 
 namespace Core\Http\Service;
 
+use App\Domain\Auth\Event\UserLastLoginEvent;
+use App\Domain\Auth\Event\UserListener;
 use App\Domain\Blog\BlogRepository;
 use App\Domain\Blog\BlogService;
+use Core\Http\Listener\EventDispatcher;
+use Core\Http\Listener\ListenerProvider;
 use Core\Http\User\LoggedUser;
 use Core\Http\User\UserInterface;
 use App\Domain\Auth\UserRepository;
@@ -20,11 +24,13 @@ class RegisterServiceContainer {
     public UserInterface $loggedUser;
     public BlogRepository $blogRepository;
     public BlogService $blog;
+    public EventDispatcher $dispatcher;
     public static array $_instance = [];
     
     public function __construct()
     {
         $this->registerService();
+        $this->registerListener();
     }
 
     public function registerService(): void
@@ -37,6 +43,14 @@ class RegisterServiceContainer {
         $this->loggedUser = $container->get(LoggedUser::class);
         $this->blogRepository = $container->get(BlogRepository::class);
         $this->blog = $container->get(BlogService::class);
+    }
+
+    public function registerListener(): void
+    {
+        $listenerProvider = (new ListenerProvider())
+            ->addListener(UserLastLoginEvent::class, new UserListener());
+
+        $this->dispatcher = new EventDispatcher($listenerProvider);
     }
 
     public static function get(): mixed
