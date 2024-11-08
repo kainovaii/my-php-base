@@ -11,6 +11,10 @@ use App\Domain\Auth\AuthService;
 use Core\Http\Service\ServiceContainer;
 use Core\Session\Flash;
 use Core\Session\SessionManager;
+use Core\Http\Listener\EventDispatcher;
+use Core\Http\Listener\ListenerProvider;
+use App\Domain\Blog\Event\BlogCreateEvent;
+use App\Domain\Blog\Event\BlogListener;
 
 class RegisterServiceContainer {
     public UserRepository $userRepository;
@@ -24,10 +28,10 @@ class RegisterServiceContainer {
     
     public function __construct()
     {
-        $this->register();
+        $this->registerService();
     }
 
-    public function register()
+    public function registerService(): void
     {
         $container = new ServiceContainer();
         $this->userRepository = $container->get(UserRepository::class);
@@ -39,7 +43,7 @@ class RegisterServiceContainer {
         $this->blog = $container->get(BlogService::class);
     }
 
-    public static function get()
+    public static function get(): mixed
     {
         $class = get_called_class();
 

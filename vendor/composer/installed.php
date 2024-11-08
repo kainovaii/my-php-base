@@ -3,7 +3,7 @@
         'name' => 'kainovaii/my-php-base',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '48fc13dd5d31571bc1068b52623633dc8d32f188',
+        'reference' => 'fa9656d936243f559bb9cecbb76f8893a76c6f07',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -188,7 +188,7 @@
         'kainovaii/my-php-base' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '48fc13dd5d31571bc1068b52623633dc8d32f188',
+            'reference' => 'fa9656d936243f559bb9cecbb76f8893a76c6f07',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

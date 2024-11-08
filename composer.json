@@ -28,7 +28,7 @@
         "symfony/filesystem": "7.2.x-dev",
         "algolia/algoliasearch-client-php": "4.0",
         "symfony/error-handler": "7.2.x-dev",
-        "symfony/event-dispatcher": "7.2.x-dev"
+        "psr/event-dispatcher": "^1.0@dev"
     },
     "require-dev": {
         "symfony/maker-bundle": "^1.0@dev",
