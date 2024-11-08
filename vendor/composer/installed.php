@@ -3,7 +3,7 @@
         'name' => 'kainovaii/my-php-base',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'fa9656d936243f559bb9cecbb76f8893a76c6f07',
+        'reference' => '587d295999543077db567974ea888573fbe1fcde',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -188,7 +188,7 @@
         'kainovaii/my-php-base' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'fa9656d936243f559bb9cecbb76f8893a76c6f07',
+            'reference' => '587d295999543077db567974ea888573fbe1fcde',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -377,7 +377,7 @@
             'dev_requirement' => false,
         ),
         'psr/event-dispatcher-implementation' => array(
-            'dev_requirement' => false,
+            'dev_requirement' => true,
             'provided' => array(
                 0 => '1.0',
             ),
@@ -717,7 +717,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/event-dispatcher',
             'aliases' => array(),
-            'dev_requirement' => false,
+            'dev_requirement' => true,
         ),
         'symfony/event-dispatcher-contracts' => array(
             'pretty_version' => 'dev-main',
@@ -728,10 +728,10 @@
             'aliases' => array(
                 0 => '3.5.x-dev',
             ),
-            'dev_requirement' => false,
+            'dev_requirement' => true,
         ),
         'symfony/event-dispatcher-implementation' => array(
-            'dev_requirement' => false,
+            'dev_requirement' => true,
             'provided' => array(
                 0 => '2.0|3.0',
             ),

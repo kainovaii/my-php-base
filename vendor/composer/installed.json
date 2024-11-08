@@ -6331,6 +6331,8 @@
         "symfony/cache-contracts",
         "symfony/config",
         "symfony/dependency-injection",
+        "symfony/event-dispatcher",
+        "symfony/event-dispatcher-contracts",
         "symfony/finder",
         "symfony/framework-bundle",
         "symfony/http-foundation",

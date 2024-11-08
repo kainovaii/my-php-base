@@ -8,6 +8,7 @@ use Core\Database\Database;
 use Core\Http\Middleware\MiddlewareStack;
 use Core\Http\Response;
 use Core\Http\Router\Route;
+use Dotenv\Dotenv;
 
 final class Application
 {
@@ -34,6 +35,9 @@ final class Application
     public function run(): void
     {
         session_start();
+
+        $dotenv = Dotenv::createImmutable(self::$ROOT_DIR);
+        $dotenv->load();
 
         $this->database->connection();
         
