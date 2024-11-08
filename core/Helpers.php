@@ -1,10 +1,9 @@
 <?php
 
 use Core\Http\Service\Service;
-use Core\Http\User\UserInterface;
-use Core\Session\Flash;
+use Core\Http\User\LoggedUser;
 
-function loggedUser(): UserInterface
+function loggedUser(): LoggedUser
 {
     return Service::get()->loggedUser;
 }

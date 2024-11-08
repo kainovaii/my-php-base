@@ -33,6 +33,10 @@ class LoggedUser implements UserInterface {
         return 'visitor';
     }
 
+    /**
+     * 
+     * User
+     */
     public function isLogged(): bool
     {
         if (isset(Service::get()->session->get('user')->username)) { return true; }

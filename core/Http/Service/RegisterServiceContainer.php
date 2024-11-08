@@ -11,10 +11,6 @@ use App\Domain\Auth\AuthService;
 use Core\Http\Service\ServiceContainer;
 use Core\Session\Flash;
 use Core\Session\SessionManager;
-use Core\Http\Listener\EventDispatcher;
-use Core\Http\Listener\ListenerProvider;
-use App\Domain\Blog\Event\BlogCreateEvent;
-use App\Domain\Blog\Event\BlogListener;
 
 class RegisterServiceContainer {
     public UserRepository $userRepository;

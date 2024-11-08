@@ -9,7 +9,7 @@ use Core\Http\Service\Service;
 
 final class AuthMiddleware implements MiddlewareInterface
 {
-    public function handle() : bool
+    public function handle(): bool
     {
         if(!loggedUser()->isLogged()) {
             ob_start();
