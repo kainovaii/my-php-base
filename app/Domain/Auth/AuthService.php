@@ -2,11 +2,9 @@
 
 namespace App\Domain\Auth;
 
-use App\Domain\Auth\Exception\IncorectPasswordException;
 use Core\Http\Request;
 use Core\Http\Service\Service;
 use App\Domain\Auth\Exception\UserBannedException;
-use App\Domain\Auth\Exception\UserNotFoundException;
 
 class AuthService extends UserRepository {
     public function authenticate(Request $_resquest): bool
@@ -23,13 +21,15 @@ class AuthService extends UserRepository {
                     Service::get()->session->set('user', $user);
                     return true;
                 } else {
-                    throw new IncorectPasswordException();
+                    Service::get()->flash->error('Sorry incorect password !');
+                    return false;
                 }
             } else {
                 throw new UserBannedException();
             }
         } else {
-            throw new UserNotFoundException(); 
+            Service::get()->flash->error('Sorry this account does not exist');
+            return false;
         }    
     }
 

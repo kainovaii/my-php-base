@@ -18,6 +18,7 @@ class BlogApiController extends Controller
             'content' => $_request->getBody()['content']
         ]);
 
+        $this->flash->success("L'article a bien été modifié");
         $this->redirect('/blog/'.$_request->getBody()['id'].'/edit');
     }
 
@@ -28,6 +29,7 @@ class BlogApiController extends Controller
         $this->blog->interate((int)$_request->getBody()['id']);
         $this->blog->delete();
 
+        $this->flash->success("L'article a bien été suprimé");
         $this->redirect('/blog');
     }
 
@@ -40,6 +42,7 @@ class BlogApiController extends Controller
             'author' => $this->loggedUser->getUserIdentifier(),
         ]);
 
+        $this->flash->success("L'article a bien été crée");
         $this->redirect('/blog');
     }
 }

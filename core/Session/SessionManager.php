@@ -1,8 +1,8 @@
 <?php
 
-namespace Core;
+namespace Core\Session;
 
-class Session
+class SessionManager
 {
     public static function set($identifier, $value)
     {

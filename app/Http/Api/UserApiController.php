@@ -11,7 +11,7 @@ class UserApiController extends Controller
     public function login(Request $_request): void
     {
         $req = $this->userService->authenticate($_request);
-        if ($req) {$this->redirect('/');}
+        if ($req) {$this->redirect('/');} else {$this->redirect('/users/login');}
     }
 
     #[Route('/api/users/logout', 'GET', 'auth')]

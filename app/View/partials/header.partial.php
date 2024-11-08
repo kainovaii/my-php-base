@@ -23,3 +23,7 @@
         </div>
     </div>
 </nav>
+
+<div class="container">
+    <?php if (isset($_SESSION['flash'])) { echo Service::get()->flash->render(); echo Service::get()->flash->clear(); } ?>
+</div>
