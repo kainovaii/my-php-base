@@ -24,4 +24,5 @@ return array(
     '568b22267a02ed7e8633652e03d8d755' => $vendorDir . '/algolia/algoliasearch-client-php/lib/Http/Psr7/functions.php',
     'ef65a1626449d89d0811cf9befce46f0' => $vendorDir . '/illuminate/events/functions.php',
     'ec07570ca5a812141189b1fa81503674' => $vendorDir . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
+    '8abe4620c1133f9149eaffa2383a6a04' => $baseDir . '/core/Helpers.php',
 );

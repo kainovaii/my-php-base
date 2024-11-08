@@ -5,16 +5,10 @@
                 <input type="hidden" name="author" value="<?= $article->author ?>">
                 <input type="hidden" name="id" value="<?= $article->id ?>">
                 <div class="row">
-                    <div class="col-md-6 mt-2">
+                    <div class="col-md-12 mt-2">
                         <div class="form-group">
                             <label>Title</label>
                             <input class="form-control" type="text" name="title" value="<?= $article->title ?>">
-                        </div>
-                    </div>
-                    <div class="col-md-6 mt-2">
-                        <div class="form-group">
-                            <label>Slug</label>
-                            <input class="form-control" type="text" value="<?= $article->slug ?>" disabled>
                         </div>
                     </div>
                     <div class="col-md-12 mt-2">

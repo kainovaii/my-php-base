@@ -5,6 +5,9 @@
         </div>
     </div>
     <div class="container mt-3">
+        <a class="btn btn-primary" href="/blog/create">Create</a>
+    </div>
+    <div class="container mt-3">
         <div class="row">
             <?php foreach ($articles as $article) { ?>
             <div class="col-md-4">

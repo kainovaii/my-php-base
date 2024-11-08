@@ -1,7 +1,6 @@
-<?php use Core\Http\Service\Service ?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Mon Blog</a>
+        <a class="navbar-brand" href="/">Mon Blog</a>
         <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
@@ -10,7 +9,10 @@
             <li class="nav-item">
                 <a class="nav-link" href="/blog">Blog</a>
             </li>
-            <?php if (Service::get()->loggedUser->isLogged()) { ?>
+            <li class="nav-item">
+                <a class="nav-link" href="/users">Users</a>
+            </li>
+            <?php if (loggedUser()->isLogged()) { ?>
             <li class="nav-item">
                 <a class="nav-link" href="/users/account">Account</a>
             </li>
@@ -23,7 +25,3 @@
         </div>
     </div>
 </nav>
-
-<div class="container">
-    <?php if (isset($_SESSION['flash'])) { echo Service::get()->flash->render(); echo Service::get()->flash->clear(); } ?>
-</div>

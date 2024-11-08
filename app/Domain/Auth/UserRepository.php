@@ -24,4 +24,11 @@ class UserRepository extends Manager {
             ->where('email', $email)
             ->first(['username', 'email', 'role', 'password', 'status']);
     }
+
+    public function getByUsername(string $username): object|null
+    {
+        return $this->table('users')
+            ->where('username', $username)
+            ->first(['username', 'email', 'role', 'password', 'status']);
+    }
 }

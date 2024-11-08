@@ -9,6 +9,7 @@
 </head>
 <body>
     {{header}}
+    {{flash_message}}
     {{content}}
 </body>
 </html>
