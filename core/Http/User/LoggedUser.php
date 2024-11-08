@@ -8,7 +8,11 @@ class LoggedUser implements UserInterface {
 
     public function getRoles(): string
     {
-        return Service::get()->session->get('user')->role;
+        if ($this->isLogged())
+        {
+            return Service::get()->session->get('user')->role;
+        }
+        return 'visitor';
     }
 
     public function getUser(): mixed

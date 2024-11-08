@@ -11,7 +11,7 @@ final class AuthMiddleware implements MiddlewareInterface
 {
     public function handle() : bool
     {
-        if(!Service::get()->loggedUser->isLogged()) {
+        if(!loggedUser()->isLogged()) {
             ob_start();
             header("location: /users/login");
             exit();
